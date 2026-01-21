@@ -159,17 +159,31 @@
         bottom: 24px;
         left: -220px;
         width: 220px;
+        display: grid;
+        align-items: end;
         pointer-events: none;
         animation: gallop 12s linear infinite;
         z-index: 10;
       }
 
       .horse {
+        grid-area: 1 / 1;
         width: 100%;
         height: auto;
         display: block;
         transform-origin: 50% 90%;
         animation: toyGallop 0.6s steps(2, end) infinite;
+      }
+
+      .horse-front {
+        z-index: 1;
+      }
+
+      .horse-back {
+        z-index: 0;
+        opacity: 0.75;
+        filter: saturate(0.9);
+        animation: toyGallopAlt 0.7s steps(2, end) infinite;
       }
 
       @keyframes floatIn {
@@ -201,6 +215,18 @@
         }
         100% {
           transform: translateY(0) rotate(-3deg) scale(1);
+        }
+      }
+
+      @keyframes toyGallopAlt {
+        0% {
+          transform: translate(-300px, 6px) rotate(-2deg) scale(0.8);
+        }
+        50% {
+          transform: translate(-288px, -2px) rotate(2deg) scale(0.84);
+        }
+        100% {
+          transform: translate(-300px, 6px) rotate(-2deg) scale(0.8);
         }
       }
 
@@ -272,7 +298,8 @@
     </main>
 
     <div class="horse-run" aria-hidden="true">
-      <img class="horse" src="horse.jpg" alt="" />
+      <img class="horse horse-back" src="horse2.png" alt="" />
+      <img class="horse horse-front" src="horse.jpg" alt="" />
     </div>
 
     <script>
